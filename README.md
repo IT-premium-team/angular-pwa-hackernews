@@ -13,6 +13,7 @@ What is used there:
 - PWA integration
 - Angular best practises for project arcitecture and Observable usage
 - LESS with some custom functions
+- Integration with Travis
 
 ## API
 
