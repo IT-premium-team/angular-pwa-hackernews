@@ -1,0 +1,22 @@
+<section class="page-container">
+  <div class="story-details-wrapper" *ngIf="story$ | async as story; else loading">
+    <mat-card class="story-container" *ngIf="!story?.error">
+      <div class="story-wrapper" [class.story-wrapper__no-margin]="story?.kids == null || story?.kids?.length === 0">
+        <app-story [story]="story"></app-story>
+      </div>
+      <app-thread [kids]="story?.kids" [showOnInitial]="true"></app-thread>
+    </mat-card>
+    
+    <ng-container *ngIf="story?.error">
+      <mat-card class="error-container">
+        <mat-card-content>
+          <p class="error-message">An error occurred while getting data. Please try later</p>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+</section>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

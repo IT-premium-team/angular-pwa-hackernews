@@ -1,0 +1,48 @@
+<article
+  *ngIf="!story?.deleted"
+  class="story-container"
+  [class.dead]="story?.dead"
+>
+  <mat-card class="story-wrapper">
+    <div class="score-wrapper" *ngIf="story?.score != null">
+      <div class="score">
+        <mat-icon>star_rate</mat-icon>
+        <div class="score-count">
+          {{ story?.score }}
+        </div>
+      </div>
+    </div>
+    <mat-card-header class="story-header">
+      <mat-card-title
+        class="story-title"
+        [class.story-title__with-hover]="!isHoverDisabled"
+        *ngIf="story?.title != null"
+        [routerLink]="['/story', story?.id]"
+      >
+        {{ story?.title }}
+      </mat-card-title>
+
+      <mat-card-subtitle class="story-subtitle" *ngIf="story?.by != null" [routerLink]="['/user', story?.by]">
+        Posted {{ story?.time * 1000 | date: 'MM/dd/yyyy' }} by
+          <span class="story-subtitle_user">{{ story?.by }}</span>
+      </mat-card-subtitle>
+      <mat-card-subtitle class="story-subtitle story-subtitle__descendants" *ngIf="story?.descendants != null">
+        {{ story?.descendants !== 0 ? story?.descendants : 'No' }} comments
+      </mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content class="story-content-wrapper">
+      <div class="story-content" *ngIf="story?.text != null" [innerHtml]="story?.text"></div>
+      <div class="story-link-wrapper" *ngIf="story?.url != null">
+        <a
+          [href]="story?.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="story-link"
+        >
+          {{ story?.url }}
+        </a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</article>

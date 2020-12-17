@@ -1,0 +1,60 @@
+.comment-container {
+  margin: 8px 0;
+  padding: 0 32px;
+
+  &_first-level {
+    margin: 8px 0 12px;
+  }
+
+  .comment {
+    cursor: default;
+
+    .comment-title {
+      color: rgba(0,0,0,.54);
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      .expand-button {
+        padding-right: 5px;
+
+        &:hover {
+          cursor: pointer;
+          color: aqua;
+          outline: none;
+        }
+
+        .custom-mat-icon {
+          font-size: 36px !important;
+          line-height: 14px !important;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .comment-info {
+        font-style: italic;
+
+        &__user {
+          &:hover {
+            cursor: pointer;
+            color: blue;
+            outline: none;
+          }
+        }
+      }
+    }
+
+    .comment-message {
+      color: rgba(0,0,0,.74);
+      font-size: 14px;
+      display: block;
+    }
+  }
+}

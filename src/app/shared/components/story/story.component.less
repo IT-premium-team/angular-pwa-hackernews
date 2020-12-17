@@ -1,0 +1,61 @@
+.story-container {
+  padding: 10px 0;
+  cursor: default;
+
+  .story-wrapper {
+    background-color: #e4e1e4;
+  }
+
+  .score-wrapper {
+    width: 100%;
+    display: block;
+
+    .score {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      color: grey;
+  
+      .score-count {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 24px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .story-title {
+
+    &__with-hover {
+      &:hover {
+        color: #673AB7;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+  }
+
+  .story-subtitle {
+    outline: none;
+
+    &_user {
+
+      &:hover {
+        cursor: pointer;
+        color: blue;
+        outline: none;
+      }
+    }
+
+    &__descendants {
+      font-style: italic;
+    }
+  }
+
+  .story-content, .story-link-wrapper {
+    margin: 0 16px;
+  }
+}

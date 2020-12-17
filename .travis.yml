@@ -1,0 +1,51 @@
+dist: trusty
+sudo: required
+
+language: node_js
+node_js:
+  - '10.15.3'
+
+branches:
+  only:
+  - dev
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+cache:
+  yarn: true
+  directories:
+    - ./node_modules
+
+before_install: # if "install" is overridden
+  # Repo for Yarn
+  - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq yarn=1.17.3-1
+
+install:
+  - yarn install
+
+script:
+  # - yarn run lint
+  - yarn run test-headless
+  - yarn run build-travis
+
+before_deploy:
+  # GitHub Pages only has problems with SPA routing
+  # so default start point is 404 for right redirection
+  # wtf, f*cking crazy!
+  mv ./dist/index.html ./dist/404.html
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  on:
+    branch: dev

@@ -1,0 +1,36 @@
+<section class="page-container">
+  <div class="post-list-wrapper" *ngIf="stories$ | async as stories; else loading">
+    <ng-container *ngIf="stories?.length != null">
+      <mat-paginator
+        [length]="paginatorConfig?.totalItemCount"
+        [pageIndex]="paginatorConfig?.pageIndex"
+        [pageSize]="paginatorConfig?.itemsPerPage"
+        [pageSizeOptions]="paginatorConfig?.pageSizeOptions"
+        (page)="triggerPageChanges($event)"
+      ></mat-paginator>
+      <mat-list class="post-list">
+        <app-story *ngFor="let story of stories" [story]="story"></app-story>
+      </mat-list>
+      <mat-paginator
+        *ngIf="stories?.length > 5"
+        [length]="paginatorConfig?.totalItemCount"
+        [pageIndex]="paginatorConfig?.pageIndex"
+        [pageSize]="paginatorConfig?.itemsPerPage"
+        [pageSizeOptions]="paginatorConfig?.pageSizeOptions"
+        (page)="triggerPageChanges($event)"
+      ></mat-paginator>
+    </ng-container>
+    
+    <ng-container *ngIf="stories?.length == null">
+      <mat-card class="error-container">
+        <mat-card-content>
+          <p class="error-message">An error occurred while getting data. Please try later</p>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+</section>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

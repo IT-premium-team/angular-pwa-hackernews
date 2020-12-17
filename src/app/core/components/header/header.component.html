@@ -1,0 +1,13 @@
+<section class="navigation-dashboard">
+  <nav mat-tab-nav-bar animationDuration="2000ms">
+    <a
+      mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      {{link.label}}
+    </a>
+  </nav>
+</section>

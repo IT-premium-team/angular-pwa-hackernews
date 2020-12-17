@@ -1,0 +1,1 @@
+export type AllowedItemTypes = 'job' | 'story' | 'comment' | 'poll' | 'pollout';

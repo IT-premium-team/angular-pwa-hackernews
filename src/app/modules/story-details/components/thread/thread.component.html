@@ -1,0 +1,21 @@
+<section class="thread-container">
+  <div class="thread-wrapper" *ngIf="thread$ | async as thread; else loading">
+    <ng-container *ngIf="thread?.length != null">
+      <app-comment *ngFor="let comment of thread" [comment]="comment" [firstLevel]="showOnInitial"></app-comment>
+    </ng-container>
+
+    <ng-container *ngIf="thread?.length == null">
+      <mat-card class="error-container">
+        <mat-card-content>
+          <p class="error-message">
+            An error occurred while getting data. Please try later
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+</section>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
